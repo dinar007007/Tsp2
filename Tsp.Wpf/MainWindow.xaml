@@ -6,39 +6,35 @@
         xmlns:local="clr-namespace:Tsp.Wpf"
         xmlns:dataGrid2D="http://gu.se/DataGrid2D"
         xmlns:wpfGraphControl="http://mlsagl"
-        xmlns:drawing="clr-namespace:Microsoft.Msagl.Drawing;assembly=AutomaticGraphLayout.Drawing"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File">
-                <MenuItem InputGestureText="Open" Command="{Binding FileOpenCommand}"/>
-                <MenuItem InputGestureText="Save"/>
+
+            <MenuItem Header="Файл">
+                <MenuItem InputGestureText="Открыть" IsEnabled="True" Command="{Binding FileOpenCommand}" />
+                <MenuItem InputGestureText="Сохранить" />
             </MenuItem>
         </Menu>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <wpfGraphControl:AutomaticGraphLayoutControl Grid.Row="0" Graph="{Binding Graph}">
-            </wpfGraphControl:AutomaticGraphLayoutControl>
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
+        <StackPanel Orientation="Horizontal">
+            <wpfGraphControl:AutomaticGraphLayoutControl DockPanel.Dock="Left" Graph="{Binding Graph}" MinWidth="400" />
+            <StackPanel Orientation="Vertical">
+                <TextBlock>Матрица расстояний</TextBlock>
                 <DataGrid HeadersVisibility="None"
-                      dataGrid2D:ItemsSource.Array2D="{Binding DataTable}" />
-                <Button Command="{Binding CalculateCommand}">Calculate</Button>
-                <TextBlock Text="{Binding MinDistance}"></TextBlock>
-                <TextBlock Text="{Binding FinalPath}"></TextBlock>
+                          dataGrid2D:ItemsSource.Array2D="{Binding DataTable}" />
+                <Button Command="{Binding CalculateCommand}">Рассчитать маршрут</Button>
+                <TextBlock>Минимальная длина маршрута</TextBlock>
+                <TextBlock Text="{Binding MinDistance}" />
+                <TextBlock>Минимальный маршрут</TextBlock>
+                <TextBlock Text="{Binding FinalPath}" />
                 <DataGrid ItemsSource="{Binding Model.Points}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Описание" Binding="{Binding Description}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
-
-        </Grid>
+        </StackPanel>
     </DockPanel>
 </Window>
-
