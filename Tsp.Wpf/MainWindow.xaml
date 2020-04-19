@@ -6,29 +6,50 @@
         xmlns:local="clr-namespace:Tsp.Wpf"
         xmlns:dataGrid2D="http://gu.se/DataGrid2D"
         xmlns:wpfGraphControl="http://mlsagl"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Задача коммивояжера, метод ветвей и границ" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-
             <MenuItem Header="Файл">
-                <MenuItem InputGestureText="Открыть" IsEnabled="True" Command="{Binding FileOpenCommand}" />
-                <MenuItem InputGestureText="Сохранить" />
+                <MenuItem InputGestureText="Открыть" Command="{Binding FileOpenCommand}" />
+                <MenuItem InputGestureText="Сохранить" Command="{Binding FileSaveCommand}"
+                          IsEnabled="{Binding SaveEnable}" />
+                <MenuItem InputGestureText="Сохранить изображение графа" Command="{Binding GraphSaveCommand}"
+                          IsEnabled="{Binding SaveEnable}" CommandParameter="{Binding ElementName=GraphLayoutControl}" />
             </MenuItem>
         </Menu>
         <StackPanel Orientation="Horizontal">
-            <wpfGraphControl:AutomaticGraphLayoutControl DockPanel.Dock="Left" Graph="{Binding Graph}" MinWidth="400" />
+            <wpfGraphControl:AutomaticGraphLayoutControl Name="GraphLayoutControl" DockPanel.Dock="Left" Graph="{Binding Graph}" MinWidth="400" />
             <StackPanel Orientation="Vertical">
-                <TextBlock>Матрица расстояний</TextBlock>
-                <DataGrid HeadersVisibility="None"
-                          dataGrid2D:ItemsSource.Array2D="{Binding DataTable}" />
-                <Button Command="{Binding CalculateCommand}">Рассчитать маршрут</Button>
-                <TextBlock>Минимальная длина маршрута</TextBlock>
-                <TextBlock Text="{Binding MinDistance}" />
-                <TextBlock>Минимальный маршрут</TextBlock>
-                <TextBlock Text="{Binding FinalPath}" />
-                <DataGrid ItemsSource="{Binding Model.Points}" AutoGenerateColumns="False">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock>Матрица расстояний</TextBlock>
+                        <DataGrid HeadersVisibility="None" CanUserAddRows="False" CanUserReorderColumns="False"
+                                  CanUserResizeColumns="False" CanUserDeleteRows="False" CanUserResizeRows="False"
+                                  CanUserSortColumns="False"
+                                  dataGrid2D:ItemsSource.Array2D="{Binding DataTable}" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="CellEditEnding">
+                                    <cmd:EventToCommand PassEventArgsToCommand="True" Command="{Binding CellEditEndingCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DataGrid>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Command="{Binding CalculateCommand}">Рассчитать маршрут</Button>
+                        <TextBlock>Минимальная длина маршрута</TextBlock>
+                        <TextBlock Text="{Binding MinDistance}" />
+                        <TextBlock>Минимальный маршрут</TextBlock>
+                        <TextBlock Text="{Binding FinalPath}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <DataGrid ItemsSource="{Binding Model.Points}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"
+                          CanUserResizeColumns="False" CanUserDeleteRows="False" CanUserResizeRows="False"
+                          CanUserSortColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название" Binding="{Binding Name}" />
                         <DataGridTextColumn Header="Описание" Binding="{Binding Description}" />
