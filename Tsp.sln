@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsp.Wpf", "Tsp.Wpf\Tsp.Wpf.csproj", "{EE195389-E168-444B-A9D8-67E22799EB7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsp.Solver", "Tsp.Solver\Tsp.Solver.csproj", "{5933F491-C950-4D4C-BD98-9E8C4EF63E65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsp.Common", "Tsp.Common\Tsp.Common.csproj", "{6CEAFC0D-5A1C-4207-A1EF-5DDA4CB17239}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE195389-E168-444B-A9D8-67E22799EB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE195389-E168-444B-A9D8-67E22799EB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE195389-E168-444B-A9D8-67E22799EB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE195389-E168-444B-A9D8-67E22799EB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5933F491-C950-4D4C-BD98-9E8C4EF63E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5933F491-C950-4D4C-BD98-9E8C4EF63E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5933F491-C950-4D4C-BD98-9E8C4EF63E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5933F491-C950-4D4C-BD98-9E8C4EF63E65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CEAFC0D-5A1C-4207-A1EF-5DDA4CB17239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CEAFC0D-5A1C-4207-A1EF-5DDA4CB17239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CEAFC0D-5A1C-4207-A1EF-5DDA4CB17239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CEAFC0D-5A1C-4207-A1EF-5DDA4CB17239}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CEB061E-A7ED-4B99-9A90-6EB4ED60AE05}
+	EndGlobalSection
+EndGlobal
