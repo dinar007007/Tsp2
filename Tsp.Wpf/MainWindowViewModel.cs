@@ -203,7 +203,10 @@ namespace Tsp.Wpf
 
         private void UpdateGraph()
         {
-            var g = new Graph();
+            var g = new Graph
+            {
+                Attr = {BackgroundColor = Color.LightCyan}
+            };
 
             for (var i = 0; i < Model.Points.Count; i++)
             {

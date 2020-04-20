@@ -10,7 +10,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Задача коммивояжера, метод ветвей и границ" Height="450" Width="800">
+        Title="Задача коммивояжера, метод ветвей и границ" Height="600" Width="800" MinWidth="800" MaxWidth="800" MinHeight="600" MaxHeight="600">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -22,7 +22,7 @@
             </MenuItem>
         </Menu>
         <StackPanel Orientation="Horizontal">
-            <wpfGraphControl:AutomaticGraphLayoutControl Name="GraphLayoutControl" DockPanel.Dock="Left" Graph="{Binding Graph}" MinWidth="400" />
+            <wpfGraphControl:AutomaticGraphLayoutControl IsEnabled="False" Background="LightCyan" VerticalScrollBarVisibility="Disabled" Name="GraphLayoutControl"  Graph="{Binding Graph}" MinWidth="400"  />
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
