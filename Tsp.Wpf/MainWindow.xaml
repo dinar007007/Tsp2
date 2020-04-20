@@ -10,7 +10,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Задача коммивояжера, метод ветвей и границ" Height="600" Width="800" MinWidth="800" MaxWidth="800" MinHeight="600" MaxHeight="600">
+        Title="Задача коммивояжера, метод ветвей и границ" Height="800" Width="1200" MinWidth="1200" MinHeight="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -22,7 +22,7 @@
             </MenuItem>
         </Menu>
         <StackPanel Orientation="Horizontal">
-            <wpfGraphControl:AutomaticGraphLayoutControl IsEnabled="False" Background="LightCyan" VerticalScrollBarVisibility="Disabled" Name="GraphLayoutControl"  Graph="{Binding Graph}" MinWidth="400"  />
+            <wpfGraphControl:AutomaticGraphLayoutControl Background="LightCyan" VerticalScrollBarVisibility="Disabled" Name="GraphLayoutControl"  Graph="{Binding Graph}" Width="800"  />
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
@@ -38,15 +38,14 @@
                             </i:Interaction.Triggers>
                         </DataGrid>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <Button Command="{Binding CalculateCommand}">Рассчитать маршрут</Button>
-                        <TextBlock>Минимальная длина маршрута</TextBlock>
-                        <TextBlock Text="{Binding MinDistance}" />
-                        <TextBlock>Минимальный маршрут</TextBlock>
-                        <TextBlock Text="{Binding FinalPath}" />
-                    </StackPanel>
                 </StackPanel>
-
+                <StackPanel Orientation="Vertical">
+                    <Button Command="{Binding CalculateCommand}">Рассчитать маршрут</Button>
+                    <TextBlock>Минимальная длина маршрута</TextBlock>
+                    <TextBlock Text="{Binding MinDistance}" />
+                    <TextBlock>Минимальный маршрут</TextBlock>
+                    <TextBlock Text="{Binding FinalPath}" />
+                </StackPanel>
                 <DataGrid ItemsSource="{Binding Model.Points}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"
                           CanUserResizeColumns="False" CanUserDeleteRows="False" CanUserResizeRows="False"
                           CanUserSortColumns="False">

@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.Msagl.Core.Layout;
+using Microsoft.Msagl.Core.Routing;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Win32;
 using Tsp.Common;
@@ -145,7 +147,7 @@ namespace Tsp.Wpf
             var stringBuilder = new StringBuilder();
             foreach (var i in solverFinalPath)
             {
-                stringBuilder.AppendLine(Model.Points[i].Name);
+                stringBuilder.Append(Model.Points[i].Name + " ");
             }
 
             return stringBuilder.ToString();
@@ -222,6 +224,8 @@ namespace Tsp.Wpf
                 }
             }
 
+            g.LayoutAlgorithmSettings.NodeSeparation = 0.2;
+            g.LayoutAlgorithmSettings.EdgeRoutingSettings.EdgeRoutingMode = EdgeRoutingMode.StraightLine;
             Graph = g;
         }
     }
