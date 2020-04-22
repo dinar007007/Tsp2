@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Tsp.Wpf.Common
@@ -16,14 +15,6 @@ namespace Tsp.Wpf.Common
                 return;
             }
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        protected void RefreshProperties()
-        {
-            GetType()?.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)?
-                .Select(x => x.Name)?
-                .ToList()
-                .ForEach(OnPropertyChanged);
         }
 
         protected void SetValue<T>(ref T field, T value, [CallerMemberName]string name = null)

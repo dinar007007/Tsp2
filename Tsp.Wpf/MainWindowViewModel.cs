@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.Msagl.Core.Geometry;
 using Microsoft.Msagl.Core.Layout;
 using Microsoft.Msagl.Core.Routing;
 using Microsoft.Msagl.Drawing;
@@ -134,6 +135,9 @@ namespace Tsp.Wpf
 
         private void Calculate()
         {
+            if (Model == null)
+                return;
+
             var solver = new Solver.Solver(Model.MatrixDistance.GetLength(0));
             solver.Tsp(Model.MatrixDistance);
             MinDistance = solver.FinalRes;
@@ -226,6 +230,7 @@ namespace Tsp.Wpf
 
             g.LayoutAlgorithmSettings.NodeSeparation = 0.2;
             g.LayoutAlgorithmSettings.EdgeRoutingSettings.EdgeRoutingMode = EdgeRoutingMode.StraightLine;
+            Graph = null;
             Graph = g;
         }
     }
