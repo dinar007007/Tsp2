@@ -12,9 +12,6 @@
         mc:Ignorable="d"
         Title="Задача коммивояжера, метод ветвей и границ" Height="800" Width="1200" MinWidth="1200" MinHeight="800">
     <Window.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="5, 5, 5, 5"></Setter>
-        </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5, 5, 5, 5"></Setter>
         </Style>
@@ -52,7 +49,7 @@
                     <TextBlock>Минимальная длина маршрута</TextBlock>
                     <TextBlock Text="{Binding MinDistance}" />
                     <TextBlock>Минимальный маршрут</TextBlock>
-                    <TextBlock Text="{Binding FinalPath}" MaxWidth="400" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding FinalPath}" MaxWidth="350" TextWrapping="Wrap" />
                 </StackPanel>
                 <DataGrid ItemsSource="{Binding Model.Points}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"
                           CanUserResizeColumns="False" CanUserDeleteRows="False" CanUserResizeRows="False"

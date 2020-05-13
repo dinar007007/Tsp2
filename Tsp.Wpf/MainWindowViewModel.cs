@@ -8,8 +8,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Microsoft.Msagl.Core.Geometry;
-using Microsoft.Msagl.Core.Layout;
 using Microsoft.Msagl.Core.Routing;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Win32;
@@ -126,11 +124,22 @@ namespace Tsp.Wpf
             var outputResult = new List<string>
             {
                 "Оптимальный маршрут",
-                FinalPath, 
+                VerbouseFinalPath, 
                 "Минимальное расстояние",
                 MinDistance.ToString(CultureInfo.InvariantCulture)
             };
             File.WriteAllLines(fileName, outputResult);
+        }
+
+        private string VerbouseOutput(IReadOnlyList<int> solverFinalPath)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (var i in solverFinalPath)
+            {
+                stringBuilder.Append(Model.Points[i].Name + "(" + Model.Points[i].Description + ") \n");
+            }
+
+            return stringBuilder.ToString();
         }
 
         private void Calculate()
@@ -144,7 +153,10 @@ namespace Tsp.Wpf
             BestPath = solver.FinalPath.ToList();
             AddBestPath(solver.FinalPath);
             FinalPath = GenerateFinalPath(solver.FinalPath);
+            VerbouseFinalPath = VerbouseOutput(solver.FinalPath);
         }
+
+        public string VerbouseFinalPath { get; set; }
 
         private string GenerateFinalPath(IReadOnlyList<int> solverFinalPath)
         {
@@ -168,6 +180,11 @@ namespace Tsp.Wpf
                 {
                     e.Attr.Color = Color.Red;
                 }
+            }
+
+            foreach (var graphEdge in Graph.Edges.ToList().Where(graphEdge => graphEdge.Attr.Color != Color.Red))
+            {
+                graphEdge.IsVisible = false;
             }
         }
 
